@@ -103,7 +103,7 @@ swapSubtrees (Node n left right) = Node n (swapSubtrees right) (swapSubtrees lef
     maxTree :: Ord a => Tree a -> Maybe a 
 -}
 
-maxTree :: Ord a => Tree a -> Maybe a
+maxTree :: NTree -> Maybe Integer
 maxTree NilT = Nothing
 maxTree (Node v left right) =
         Just (foldr max v (vals left ++ vals right))
@@ -118,7 +118,7 @@ maxTree (Node v left right) =
 
 heightTree :: Tree a -> Int
 heightTree (Leaf _ _) = 0 -- leaf has height of 0
-heightTree (Node _ left right) = 1 + max (heightTree left) (heightTree right) -- find the height of the tallest subtree and then add 1
+heightTree (NodeT _ left right) = 1 + max (heightTree left) (heightTree right) -- find the height of the tallest subtree and then add 1
 
 {-
 8. Define a function inorderTree to sort all the values in the tree in ascending order. 
@@ -126,8 +126,8 @@ heightTree (Node _ left right) = 1 + max (heightTree left) (heightTree right) --
 -}
 
 inorderTree :: Ord a => Tree a -> [a]
-inorderTree NilT = []
-inorderTree (Node value left right) = inorderTree left ++ [value] ++ inorderTree right
+inorderTree (Leaf x _) = [x]
+inorderTree (NodeT _ left right) = inorderTree left ++ inorderTree right
 
 {-
 9. Define function to give printable versions of Huffman tables
@@ -160,6 +160,7 @@ stringToBinary str = codeToBinary (parseString str)
         parseString (_:rest) = parseString rest  -- ignore invalid characters
 
 -- main function to test functions from questions 1-10
+-- for each question, comment/uncomment accordingly
 main :: IO ()
 main = do
     let tree = Node 3 (Node 4 NilT NilT) NilT
@@ -190,4 +191,55 @@ main = do
     putStrLn "\nReflected tree:"
     print reflected
 
+    -- 6
+    {-
+    print tree
+    putStrLn $ "Maximum value: " ++ show (maxTree tree)
     
+    let emptyTree = NilT
+    putStrLn $ "Maximum of empty tree: " ++ show (maxTree emptyTree)
+    -}
+
+    -- 7
+    {-
+    let tree = NodeT 5 (Leaf 'a' 1) (NodeT 3 (Leaf 'b' 1) (Leaf 'c' 1))
+                
+    print tree
+    putStrLn $ "Height of tree: " ++ show (heightTree tree)
+
+    let leafOnly = Leaf 'x' 1
+    putStrLn $ "Height of a single leaf: " ++ show (heightTree leafOnly)
+    -}
+
+    -- 8
+    {-
+    let tree = NodeT 5 (Leaf 'a' 1) (NodeT 3 (Leaf 'c' 1) (Leaf 'b' 1))
+
+    print tree
+    putStrLn $ "Inorder traversal (sorted): " ++ show (inorderTree tree) -- expected output: acb
+    -}
+
+    -- 9
+    {-
+    let table =
+            [ ('a', [L, R])
+            , ('b', [R])
+            , ('c', [L, L, R]) ]
+    putStrLn "Huffman Table:"
+    putStrLn (showTable table)
+    -}
+
+    -- 10
+    {-
+    -- test codeToBinary with an HCode value
+    let code1 = [L, R, R, L]
+    putStrLn $ "codeToBinary [L,R,R,L] = " ++ codeToBinary code1
+
+    -- test stringToBinary
+    let str1 = "LRRL"
+    putStrLn $ "stringToBinary \"LRRL\" = " ++ stringToBinary str1
+
+    -- another test with extra characters that should be ignored
+    let str2 = "LXRBL"
+    putStrLn $ "stringToBinary \"LXRBL\" = " ++ stringToBinary str2
+-}
