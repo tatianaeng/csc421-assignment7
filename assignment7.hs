@@ -194,10 +194,10 @@ main = do
     -- 6
     {-
     print tree
-    putStrLn $ "Maximum value: " ++ show (maxTree tree)
+    putStrLn ("Maximum value: " ++ show (maxTree tree))
     
     let emptyTree = NilT
-    putStrLn $ "Maximum of empty tree: " ++ show (maxTree emptyTree)
+    putStrLn ("Maximum of empty tree: " ++ show (maxTree emptyTree))
     -}
 
     -- 7
@@ -205,10 +205,10 @@ main = do
     let tree = NodeT 5 (Leaf 'a' 1) (NodeT 3 (Leaf 'b' 1) (Leaf 'c' 1))
                 
     print tree
-    putStrLn $ "Height of tree: " ++ show (heightTree tree)
+    putStrLn ("Height of tree: " ++ show (heightTree tree))
 
     let leafOnly = Leaf 'x' 1
-    putStrLn $ "Height of a single leaf: " ++ show (heightTree leafOnly)
+    putStrLn ("Height of a single leaf: " ++ show (heightTree leafOnly))
     -}
 
     -- 8
@@ -216,7 +216,7 @@ main = do
     let tree = NodeT 5 (Leaf 'a' 1) (NodeT 3 (Leaf 'c' 1) (Leaf 'b' 1))
 
     print tree
-    putStrLn $ "Inorder traversal (sorted): " ++ show (inorderTree tree) -- expected output: acb
+    putStrLn ("Inorder traversal (sorted): " ++ show (inorderTree tree)) -- expected output: acb
     -}
 
     -- 9
@@ -233,13 +233,13 @@ main = do
     {-
     -- test codeToBinary with an HCode value
     let code1 = [L, R, R, L]
-    putStrLn $ "codeToBinary [L,R,R,L] = " ++ codeToBinary code1
+    putStrLn ("codeToBinary [L,R,R,L] = " ++ codeToBinary code1)
 
     -- test stringToBinary
     let str1 = "LRRL"
-    putStrLn $ "stringToBinary \"LRRL\" = " ++ stringToBinary str1
+    putStrLn ("stringToBinary \"LRRL\" = " ++ stringToBinary str1)
 
     -- another test with extra characters that should be ignored
     let str2 = "LXRBL"
-    putStrLn $ "stringToBinary \"LXRBL\" = " ++ stringToBinary str2
+    putStrLn ("stringToBinary \"LXRBL\" = " ++ stringToBinary str2)
 -}
